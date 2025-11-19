@@ -4,6 +4,10 @@
   "description": "UI POC with strict development standards",
   "private": true,
   "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "start": "vite preview",
     "prepare": "husky install && npm run link-plugin",
     "link-plugin": "cd eslint-plugin-project-rules && npm link && cd .. && npm link eslint-plugin-project-rules",
     "lint": "eslint . --ext .ts,.tsx",
@@ -28,6 +32,7 @@
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
+    "@vitejs/plugin-react": "^5.1.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
@@ -40,7 +45,8 @@
     "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vite": "^7.2.2"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -51,6 +57,15 @@
     "*.{json,md}": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.5",
+    "@mui/material": "^7.3.5",
+    "@types/react-router-dom": "^5.3.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.6"
   }
 }
-
