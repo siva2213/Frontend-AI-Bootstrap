@@ -1,16 +1,16 @@
 import React, { memo, useMemo, useCallback, useState } from 'react';
 import { Box, useTheme, useMediaQuery } from '@mui/material';
 import { Navbar } from '@components/common/Navbar';
-import { Sidebar } from '@components/layout/Sidebar';
+import { Sidebar } from '@layouts/Sidebar';
 
 /**
  * AppLayout Component
- * 
+ *
  * Follows: docs/rules/component-standards.md
  * - Performance: Memoized with React.memo, uses useMemo/useCallback
  * - Responsiveness: Mobile-first design with Material UI breakpoints
  * - Accessibility: Proper layout structure and ARIA landmarks
- * 
+ *
  * Features:
  * - Combines Navbar and Sidebar
  * - Handles responsive layout logic
@@ -30,7 +30,7 @@ export const AppLayout = memo<AppLayoutProps>(({ children }) => {
 
   // Handle sidebar toggle for mobile/tablet
   const handleSidebarToggle = useCallback(() => {
-    setSidebarOpen((prev) => !prev);
+    setSidebarOpen(prev => !prev);
   }, []);
 
   // Handle sidebar close
@@ -40,7 +40,7 @@ export const AppLayout = memo<AppLayoutProps>(({ children }) => {
 
   // Handle navbar menu toggle (separate from sidebar)
   const handleNavbarMenuToggle = useCallback(() => {
-    setNavbarMenuOpen((prev) => !prev);
+    setNavbarMenuOpen(prev => !prev);
   }, []);
 
   // Memoized layout structure
@@ -66,7 +66,7 @@ export const AppLayout = memo<AppLayoutProps>(({ children }) => {
             flexShrink: 0,
           }}
         >
-          <Navbar 
+          <Navbar
             onMenuClick={isMobile ? handleNavbarMenuToggle : undefined}
             menuOpen={navbarMenuOpen}
           />
@@ -139,4 +139,3 @@ export const AppLayout = memo<AppLayoutProps>(({ children }) => {
 });
 
 AppLayout.displayName = 'AppLayout';
-

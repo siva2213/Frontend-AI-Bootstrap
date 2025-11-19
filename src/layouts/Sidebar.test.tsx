@@ -1,6 +1,6 @@
 /**
  * Sidebar Component Tests
- * 
+ *
  * Follows: docs/rules/testing.md
  * - User-centric testing
  * - Accessibility testing
@@ -29,11 +29,21 @@ describe('Sidebar', () => {
     it('renders all sidebar links', () => {
       renderWithProviders(<Sidebar />);
 
-      expect(screen.getByRole('navigation', { name: /sidebar navigation/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /navigate to dashboard/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /navigate to patients/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /navigate to appointments/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /navigate to settings/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole('navigation', { name: /sidebar navigation/i })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: /navigate to dashboard/i })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: /navigate to patients/i })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: /navigate to appointments/i })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: /navigate to settings/i })
+      ).toBeInTheDocument();
     });
 
     it('renders with permanent variant on desktop', () => {
@@ -66,7 +76,9 @@ describe('Sidebar', () => {
     it('calls onClose when temporary drawer is closed', () => {
       const handleClose = jest.fn();
 
-      renderWithProviders(<Sidebar variant="temporary" open={true} onClose={handleClose} />);
+      renderWithProviders(
+        <Sidebar variant="temporary" open={true} onClose={handleClose} />
+      );
 
       // Click outside or press escape (MUI Drawer handles this)
       // For testing, we'll verify the onClose prop is passed correctly
@@ -78,7 +90,9 @@ describe('Sidebar', () => {
 
       renderWithProviders(<Sidebar />);
 
-      const dashboardLink = screen.getByRole('button', { name: /navigate to dashboard/i });
+      const dashboardLink = screen.getByRole('button', {
+        name: /navigate to dashboard/i,
+      });
       dashboardLink.focus();
 
       await user.keyboard('{Enter}');
@@ -99,7 +113,9 @@ describe('Sidebar', () => {
     it('has accessible navigation links', () => {
       renderWithProviders(<Sidebar />);
 
-      const dashboardLink = screen.getByRole('button', { name: /navigate to dashboard/i });
+      const dashboardLink = screen.getByRole('button', {
+        name: /navigate to dashboard/i,
+      });
       expect(dashboardLink).toBeInTheDocument();
     });
 
@@ -114,7 +130,9 @@ describe('Sidebar', () => {
 
       renderWithProviders(<Sidebar />);
 
-      const dashboardLink = screen.getByRole('button', { name: /navigate to dashboard/i });
+      const dashboardLink = screen.getByRole('button', {
+        name: /navigate to dashboard/i,
+      });
       // The link should be marked as selected/active
       expect(dashboardLink).toBeInTheDocument();
     });
@@ -138,4 +156,3 @@ describe('Sidebar', () => {
     });
   });
 });
-

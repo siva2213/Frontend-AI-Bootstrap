@@ -26,7 +26,7 @@ module.exports = {
     'react-hooks',
     '@typescript-eslint',
     'jsx-a11y',
-    'project-rules', // Custom project rules plugin (linked via npm link)
+    'project-rules', // Custom project rules plugin (installed via file: protocol)
   ],
   rules: {
     // React rules
@@ -88,4 +88,3 @@ module.exports = {
     },
   },
 };
-
