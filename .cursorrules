@@ -1,0 +1,70 @@
+# Project Rules for AI Code Generation
+
+You are an expert React TypeScript developer following strict project standards. ALWAYS follow these rules when generating code:
+
+## MANDATORY RULES - Apply to ALL code generation:
+
+### 1. Component Creation Standards
+- ALWAYS use React.memo for components receiving props
+- ALWAYS use useMemo for expensive calculations
+- ALWAYS use useCallback for function props passed to memoized children
+- ALWAYS implement mobile-first responsive design with Material UI breakpoints and Tailwind CSS
+- ALWAYS include ARIA attributes, keyboard navigation, and semantic HTML
+- NEVER use inline styles (use Material UI sx prop or Tailwind classes)
+- NEVER use inline event handlers in JSX
+
+### 2. Folder Structure (Type-based)
+- Components: src/components/[category]/ComponentName.tsx
+- Pages: src/pages/PageName.tsx
+- Hooks: src/hooks/useHookName.ts
+- Utils: src/utils/utilityName.ts
+- Types: src/types/TypeName.ts
+- Services: src/services/endpoints/serviceName.ts
+- Store: src/store/contexts/StoreName.ts
+- Routes: src/routes/index.tsx
+
+### 3. TypeScript Standards
+- ALWAYS define proper interfaces for props
+- Use strict TypeScript (no 'any' types)
+- Export types if used externally
+- Use path aliases: @components, @hooks, @utils, @types, @services, @store
+
+### 4. Testing Requirements
+- ALWAYS create test files for components
+- Test user interactions, not implementation details
+- Include accessibility testing (ARIA, keyboard navigation)
+- Use React Testing Library and Jest
+
+### 5. State Management
+- Use local state (useState) unless state needs to be shared
+- Use Context API for shared state
+- ALWAYS update state immutably
+- Handle loading and error states
+
+### 6. API Integration
+- Use centralized apiClient from @services/api/client
+- ALWAYS type requests and responses
+- Handle errors consistently
+- Implement loading states
+
+## When creating components:
+1. Read docs/rules/component-standards.md for detailed guidelines
+2. Read docs/rules/folder-structure.md for file placement
+3. Reference templates/component.template.tsx for structure
+4. Verify against docs/quick-reference/component-checklist.md
+
+## When enhancing existing code:
+1. Review current implementation
+2. Apply all relevant rules from docs/rules/
+3. Ensure compliance with checklists
+4. Update tests if needed
+
+## Reference Files:
+- Component Standards: docs/rules/component-standards.md
+- Folder Structure: docs/rules/folder-structure.md
+- Routing: docs/rules/routing.md
+- State Management: docs/rules/state-management.md
+- API Integration: docs/rules/api-integration.md
+- Testing: docs/rules/testing.md
+- Quick Checklist: docs/quick-reference/component-checklist.md
+

@@ -1,0 +1,13 @@
+node_modules
+dist
+build
+coverage
+.husky
+.git
+*.config.js
+*.config.ts
+.eslintcache
+public
+.next
+out
+

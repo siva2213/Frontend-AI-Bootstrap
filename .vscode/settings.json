@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    ".cursorrules": "markdown",
+    "AI_INSTRUCTIONS.md": "markdown"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative"
+}
+

@@ -1,0 +1,10 @@
+{
+  "name": "eslint-plugin-project-rules",
+  "version": "1.0.0",
+  "description": "Custom ESLint rules for project standards (CSP, ADA, Mobile-First, Performance)",
+  "main": "index.js",
+  "keywords": ["eslint", "eslintplugin", "react", "typescript", "accessibility", "csp"],
+  "author": "",
+  "license": "MIT"
+}
+
