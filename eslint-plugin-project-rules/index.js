@@ -395,12 +395,22 @@ module.exports = {
             if (
               node.init &&
               node.init.type === 'CallExpression' &&
-              node.init.callee.type === 'MemberExpression' &&
-              node.init.callee.object.name === 'React' &&
-              node.init.callee.property.name === 'memo'
+              node.init.callee
             ) {
-              hasMemo = true;
-              componentName = node.id.name;
+              // Check for React.memo() or memo() (imported from React)
+              const isReactMemo = 
+                node.init.callee.type === 'MemberExpression' &&
+                node.init.callee.object.name === 'React' &&
+                node.init.callee.property.name === 'memo';
+              
+              const isMemoImport = 
+                node.init.callee.type === 'Identifier' &&
+                node.init.callee.name === 'memo';
+              
+              if (isReactMemo || isMemoImport) {
+                hasMemo = true;
+                componentName = node.id.name;
+              }
             }
           },
 

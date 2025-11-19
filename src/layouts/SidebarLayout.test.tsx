@@ -12,7 +12,7 @@ import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter } from 'react-router-dom';
 import { theme } from '@styles/theme';
-import { Sidebar } from './Sidebar';
+import { SidebarLayout } from '@layouts/SidebarLayout';
 
 // Helper to render with theme and router
 const renderWithProviders = (ui: React.ReactElement) => {
@@ -23,11 +23,11 @@ const renderWithProviders = (ui: React.ReactElement) => {
   );
 };
 
-describe('Sidebar', () => {
+describe('SidebarLayout', () => {
   // Rendering tests
   describe('when rendering', () => {
     it('renders all sidebar links', () => {
-      renderWithProviders(<Sidebar />);
+      renderWithProviders(<SidebarLayout />);
 
       expect(
         screen.getByRole('navigation', { name: /sidebar navigation/i })
@@ -53,7 +53,7 @@ describe('Sidebar', () => {
         value: 1200,
       });
 
-      renderWithProviders(<Sidebar variant="permanent" />);
+      renderWithProviders(<SidebarLayout variant="permanent" />);
 
       expect(screen.getByRole('navigation')).toBeInTheDocument();
     });
@@ -65,7 +65,7 @@ describe('Sidebar', () => {
         value: 500,
       });
 
-      renderWithProviders(<Sidebar variant="temporary" open={true} />);
+      renderWithProviders(<SidebarLayout variant="temporary" open={true} />);
 
       expect(screen.getByRole('navigation')).toBeInTheDocument();
     });
@@ -77,7 +77,7 @@ describe('Sidebar', () => {
       const handleClose = jest.fn();
 
       renderWithProviders(
-        <Sidebar variant="temporary" open={true} onClose={handleClose} />
+        <SidebarLayout variant="temporary" open={true} onClose={handleClose} />
       );
 
       // Click outside or press escape (MUI Drawer handles this)
@@ -88,7 +88,7 @@ describe('Sidebar', () => {
     it('handles keyboard navigation for links', async () => {
       const user = userEvent.setup();
 
-      renderWithProviders(<Sidebar />);
+      renderWithProviders(<SidebarLayout />);
 
       const dashboardLink = screen.getByRole('button', {
         name: /navigate to dashboard/i,
@@ -104,14 +104,14 @@ describe('Sidebar', () => {
   // Accessibility tests
   describe('accessibility', () => {
     it('has proper ARIA attributes', () => {
-      renderWithProviders(<Sidebar />);
+      renderWithProviders(<SidebarLayout />);
 
       const nav = screen.getByRole('navigation');
       expect(nav).toHaveAttribute('aria-label', 'Sidebar navigation');
     });
 
     it('has accessible navigation links', () => {
-      renderWithProviders(<Sidebar />);
+      renderWithProviders(<SidebarLayout />);
 
       const dashboardLink = screen.getByRole('button', {
         name: /navigate to dashboard/i,
@@ -128,7 +128,7 @@ describe('Sidebar', () => {
         },
       });
 
-      renderWithProviders(<Sidebar />);
+      renderWithProviders(<SidebarLayout />);
 
       const dashboardLink = screen.getByRole('button', {
         name: /navigate to dashboard/i,
@@ -147,7 +147,7 @@ describe('Sidebar', () => {
         value: 500,
       });
 
-      renderWithProviders(<Sidebar variant="temporary" open={false} />);
+      renderWithProviders(<SidebarLayout variant="temporary" open={false} />);
 
       // Drawer should not be visible when closed
       // On mobile with temporary variant and open=false, drawer might not render

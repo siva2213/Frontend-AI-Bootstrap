@@ -19,12 +19,12 @@ import PaymentIcon from '@mui/icons-material/Payment';
 
 /**
  * Home Page Component
- * 
+ *
  * Follows: docs/rules/component-standards.md
  * - Performance: Memoized with React.memo, uses useMemo/useCallback
  * - Responsiveness: Mobile-first responsive grid layout
  * - Accessibility: Full ARIA attributes, semantic HTML
- * 
+ *
  * Sections:
  * - Hero Section: Prominent banner with value proposition
  * - Welcome Message: Personalized greeting
@@ -41,22 +41,26 @@ interface ServiceCard {
 const SERVICES: ServiceCard[] = [
   {
     title: 'Laboratory Testing',
-    description: 'Comprehensive diagnostic testing services for accurate health insights.',
+    description:
+      'Comprehensive diagnostic testing services for accurate health insights.',
     icon: <ScienceIcon />,
   },
   {
     title: 'Health Screenings',
-    description: 'Preventive health screenings to help you stay ahead of potential issues.',
+    description:
+      'Preventive health screenings to help you stay ahead of potential issues.',
     icon: <HealthAndSafetyIcon />,
   },
   {
     title: 'Medical Reports',
-    description: 'Access your test results and medical reports securely online.',
+    description:
+      'Access your test results and medical reports securely online.',
     icon: <AssignmentIcon />,
   },
   {
     title: 'Expert Care',
-    description: 'Trusted healthcare professionals dedicated to your well-being.',
+    description:
+      'Trusted healthcare professionals dedicated to your well-being.',
     icon: <LocalHospitalIcon />,
   },
 ];
@@ -114,19 +118,23 @@ export const Home = memo(() => {
   // Memoized service cards
   const serviceCards = useMemo(
     () =>
-      services.map((service) => (
+      services.map(service => (
         <Box
           key={service.title}
           sx={{
-            width: { xs: '100%', sm: 'calc(50% - 8px)', md: 'calc(25% - 12px)' },
+            width: {
+              xs: '100%',
+              sm: 'calc(50% - 8px)',
+              md: 'calc(25% - 12px)',
+            },
             marginBottom: { xs: 2, sm: 0 },
           }}
         >
           <Card
             sx={{
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
+              height: { xs: '100%', sm: '100%' },
+              display: { xs: 'flex', sm: 'flex' },
+              flexDirection: { xs: 'column', sm: 'column' },
               transition: 'transform 0.2s, box-shadow 0.2s',
               '&:hover': {
                 transform: 'translateY(-4px)',
@@ -189,7 +197,7 @@ export const Home = memo(() => {
   // Memoized CTA buttons
   const ctaButtonElements = useMemo(
     () =>
-      ctaButtons.map((button) => {
+      ctaButtons.map(button => {
         const handleClick = () => handleCTAClick(button.path);
         const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) =>
           handleCTAKeyDown(button.path, e);
@@ -201,15 +209,15 @@ export const Home = memo(() => {
             startIcon={button.icon}
             onClick={handleClick}
             onKeyDown={handleKeyDown}
-          sx={{
-            minHeight: 44,
-            minWidth: { xs: '100%', sm: 'auto' },
-            padding: { xs: '12px 24px', sm: '14px 32px' },
-            fontSize: { xs: '0.9rem', sm: '1rem' },
-            width: { xs: '100%', sm: 'auto' },
-          }}
-          aria-label={button.label}
-        >
+            sx={{
+              minHeight: 44,
+              minWidth: { xs: '100%', sm: 'auto' },
+              padding: { xs: '12px 24px', sm: '14px 32px' },
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+              width: { xs: '100%', sm: 'auto' },
+            }}
+            aria-label={button.label}
+          >
             {button.label}
           </Button>
         );
@@ -299,9 +307,10 @@ export const Home = memo(() => {
               color: 'text.secondary',
             }}
           >
-            We are committed to providing you with accurate, timely, and accessible
-            healthcare services. Our comprehensive range of diagnostic tests and health
-            screenings helps you make informed decisions about your health and wellness.
+            We are committed to providing you with accurate, timely, and
+            accessible healthcare services. Our comprehensive range of
+            diagnostic tests and health screenings helps you make informed
+            decisions about your health and wellness.
           </Typography>
         </Box>
 
@@ -360,4 +369,3 @@ export const Home = memo(() => {
 });
 
 Home.displayName = 'Home';
-

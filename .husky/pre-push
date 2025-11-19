@@ -7,9 +7,12 @@ echo "🚀 Running pre-push checks..."
 echo "📝 Checking TypeScript types..."
 npm run type-check
 
+# Build check - ensures code compiles and bundles successfully
+echo "🏗️  Building project..."
+npm run build
+
 # Run full test suite - ensures all tests pass
 echo "🧪 Running tests..."
 npm run test
 
 echo "✅ Pre-push checks passed!"
-

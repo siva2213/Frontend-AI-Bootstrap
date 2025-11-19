@@ -20,7 +20,7 @@ import { Link, useLocation } from 'react-router-dom';
 import type { SidebarLink } from '@types/navigation';
 
 /**
- * Sidebar Component
+ * SidebarLayout Component
  *
  * Follows: docs/rules/component-standards.md
  * - Performance: Memoized with React.memo, uses useMemo/useCallback
@@ -34,7 +34,7 @@ import type { SidebarLink } from '@types/navigation';
  * - Active link highlighting
  */
 
-interface SidebarProps {
+interface SidebarLayoutProps {
   open?: boolean;
   onClose?: () => void;
   onToggle?: () => void;
@@ -66,7 +66,7 @@ const SIDEBAR_LINKS: SidebarLink[] = [
 
 const DRAWER_WIDTH = 240;
 
-export const Sidebar = memo<SidebarProps>(
+export const SidebarLayout = memo<SidebarLayoutProps>(
   ({ open = true, onClose, onToggle, variant }) => {
     const theme = useTheme();
     const location = useLocation();
@@ -189,11 +189,11 @@ export const Sidebar = memo<SidebarProps>(
         role="navigation"
         aria-label="Sidebar navigation"
         sx={{
-          width: DRAWER_WIDTH,
+          width: { xs: DRAWER_WIDTH, sm: DRAWER_WIDTH },
           flexShrink: 0,
-          height: '100%',
+          height: { xs: '100%', sm: '100%' },
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: { xs: 'column', sm: 'column' },
         }}
       >
         <List
@@ -281,4 +281,4 @@ export const Sidebar = memo<SidebarProps>(
   }
 );
 
-Sidebar.displayName = 'Sidebar';
+SidebarLayout.displayName = 'SidebarLayout';

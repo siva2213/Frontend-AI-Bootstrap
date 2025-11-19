@@ -1,13 +1,20 @@
 /**
  * Store Template
- * 
+ *
  * Follows: docs/rules/state-management.md
  * - Type-safe state
  * - Immutable updates
  * - Proper state structure
  */
 
-import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  ReactNode,
+  memo,
+} from 'react';
 
 // Define state interface
 interface StoreState {
@@ -34,7 +41,7 @@ interface StoreProviderProps {
   children: ReactNode;
 }
 
-export const StoreProvider = ({ children }: StoreProviderProps) => {
+export const StoreProvider = memo<StoreProviderProps>(({ children }) => {
   const [state, setState] = useState<StoreState>({
     data: null,
     loading: false,
@@ -67,11 +74,11 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   };
 
   return (
-    <StoreContext.Provider value={value}>
-      {children}
-    </StoreContext.Provider>
+    <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
   );
-};
+});
+
+StoreProvider.displayName = 'StoreProvider';
 
 // Custom hook
 export const useStore = () => {
@@ -81,4 +88,3 @@ export const useStore = () => {
   }
   return context;
 };
-

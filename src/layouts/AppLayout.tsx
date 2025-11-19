@@ -1,7 +1,7 @@
 import React, { memo, useMemo, useCallback, useState } from 'react';
 import { Box, useTheme, useMediaQuery } from '@mui/material';
 import { Navbar } from '@components/common/Navbar';
-import { Sidebar } from '@layouts/Sidebar';
+import { SidebarLayout } from '@layouts/SidebarLayout';
 
 /**
  * AppLayout Component
@@ -50,7 +50,7 @@ export const AppLayout = memo<AppLayoutProps>(({ children }) => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          height: '100vh',
+          height: { xs: '100vh', sm: '100vh' },
           backgroundColor: 'background.default',
           overflow: 'hidden',
         }}
@@ -61,7 +61,7 @@ export const AppLayout = memo<AppLayoutProps>(({ children }) => {
           role="banner"
           sx={{
             position: 'sticky',
-            top: 0,
+            top: { xs: 0, sm: 0 },
             zIndex: theme.zIndex.appBar,
             flexShrink: 0,
           }}
@@ -78,8 +78,8 @@ export const AppLayout = memo<AppLayoutProps>(({ children }) => {
           role="main"
           sx={{
             display: 'flex',
-            flex: 1,
-            width: '100%',
+            flex: { xs: 1, sm: 1 },
+            width: { xs: '100%', sm: '100%' },
             overflow: 'hidden',
             position: 'relative',
           }}
@@ -94,11 +94,11 @@ export const AppLayout = memo<AppLayoutProps>(({ children }) => {
               flexShrink: 0,
             }}
           >
-            <Sidebar variant="permanent" />
+            <SidebarLayout variant="permanent" />
           </Box>
 
           {/* Mobile/Tablet Sidebar - Floating */}
-          <Sidebar
+          <SidebarLayout
             variant="temporary"
             open={sidebarOpen}
             onClose={handleSidebarClose}

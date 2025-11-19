@@ -64,6 +64,9 @@ function validateFolderStructure(filePath) {
   const fileName = parts[parts.length - 1];
   const folderPath = parts.slice(0, -1);
 
+  // Skip test files from naming convention checks
+  const isTestFile = /\.(test|spec)\.(ts|tsx)$/.test(fileName);
+
   // Check component folder structure
   if (normalizedPath.includes('/components/')) {
     const componentIndex = folderPath.indexOf('components');
@@ -77,8 +80,8 @@ function validateFolderStructure(filePath) {
       });
     }
     
-    // Check file naming
-    if (!NAMING_RULES.components.test(fileName)) {
+    // Check file naming (skip test files)
+    if (!isTestFile && !NAMING_RULES.components.test(fileName)) {
       errors.push({
         type: 'naming-convention',
         message: `Component files must use PascalCase. Found: ${fileName}. Example: Button.tsx, UserCard.tsx`,
@@ -100,8 +103,8 @@ function validateFolderStructure(filePath) {
       });
     }
     
-    // Check file naming
-    if (!NAMING_RULES.hooks.test(fileName)) {
+    // Check file naming (skip test files)
+    if (!isTestFile && !NAMING_RULES.hooks.test(fileName)) {
       errors.push({
         type: 'naming-convention',
         message: `Hook files must start with 'use' and use camelCase. Found: ${fileName}. Example: useAuth.ts, useApi.ts`,
@@ -112,7 +115,7 @@ function validateFolderStructure(filePath) {
 
   // Check pages folder structure
   if (normalizedPath.includes('/pages/')) {
-    if (!NAMING_RULES.pages.test(fileName)) {
+    if (!isTestFile && !NAMING_RULES.pages.test(fileName)) {
       errors.push({
         type: 'naming-convention',
         message: `Page files must use PascalCase. Found: ${fileName}. Example: Dashboard.tsx, Login.tsx`,
@@ -123,7 +126,7 @@ function validateFolderStructure(filePath) {
 
   // Check layouts folder structure
   if (normalizedPath.includes('/layouts/')) {
-    if (!NAMING_RULES.layouts.test(fileName)) {
+    if (!isTestFile && !NAMING_RULES.layouts.test(fileName)) {
       errors.push({
         type: 'naming-convention',
         message: `Layout files must use PascalCase with 'Layout' suffix. Found: ${fileName}. Example: AppLayout.tsx, AuthLayout.tsx`,
@@ -145,8 +148,8 @@ function validateFolderStructure(filePath) {
       });
     }
     
-    // Check file naming
-    if (!NAMING_RULES.utils.test(fileName)) {
+    // Check file naming (skip test files)
+    if (!isTestFile && !NAMING_RULES.utils.test(fileName)) {
       errors.push({
         type: 'naming-convention',
         message: `Utility files must use camelCase. Found: ${fileName}. Example: formatDate.ts, validateEmail.ts`,
@@ -168,8 +171,8 @@ function validateFolderStructure(filePath) {
       });
     }
     
-    // Check file naming
-    if (!NAMING_RULES.types.test(fileName)) {
+    // Check file naming (skip test files)
+    if (!isTestFile && !NAMING_RULES.types.test(fileName)) {
       errors.push({
         type: 'naming-convention',
         message: `Type files must use PascalCase. Found: ${fileName}. Example: User.ts, ApiResponse.ts`,
@@ -191,9 +194,9 @@ function validateFolderStructure(filePath) {
       });
     }
     
-    // Check file naming (only for endpoint services)
+    // Check file naming (only for endpoint services, skip test files)
     if (normalizedPath.includes('/services/endpoints/')) {
-      if (!NAMING_RULES.services.test(fileName)) {
+      if (!isTestFile && !NAMING_RULES.services.test(fileName)) {
         errors.push({
           type: 'naming-convention',
           message: `Service files must use camelCase with 'Service' suffix. Found: ${fileName}. Example: userService.ts, authService.ts`,

@@ -5,7 +5,7 @@ import { AppLayout } from '@layouts/AppLayout';
 
 /**
  * Route Configuration
- * 
+ *
  * Follows: docs/rules/routing.md
  * - Lazy loading for route-level components
  * - Suspense with loading fallback
@@ -13,15 +13,24 @@ import { AppLayout } from '@layouts/AppLayout';
  */
 
 // Lazy load pages
-const Home = lazy(() => import('@pages/Home').then((module) => ({ default: module.Home })));
-const About = lazy(() => import('@pages/About').then((module) => ({ default: module.About })));
+const Home = lazy(() =>
+  import('@pages/Home').then(module => ({ default: module.Home }))
+);
+const About = lazy(() =>
+  import('@pages/About').then(module => ({ default: module.About }))
+);
 const Services = lazy(() =>
-  import('@pages/Services').then((module) => ({ default: module.Services }))
+  import('@pages/Services').then(module => ({ default: module.Services }))
 );
 const Contact = lazy(() =>
-  import('@pages/Contact').then((module) => ({ default: module.Contact }))
+  import('@pages/Contact').then(module => ({ default: module.Contact }))
 );
-const Login = lazy(() => import('@pages/Login').then((module) => ({ default: module.Login })));
+const Login = lazy(() =>
+  import('@pages/Login').then(module => ({ default: module.Login }))
+);
+const Dashboard = lazy(() =>
+  import('@pages/Dashboard').then(module => ({ default: module.Dashboard }))
+);
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -82,10 +91,17 @@ export const AppRoutes = () => {
               </AppLayout>
             }
           />
+          <Route
+            path="/dashboard"
+            element={
+              <AppLayout>
+                <Dashboard />
+              </AppLayout>
+            }
+          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
   );
 };
-

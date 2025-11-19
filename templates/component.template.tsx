@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 /**
  * ComponentName Component
- * 
+ *
  * Follows: docs/rules/component-standards.md
  * - Performance: Memoized with React.memo, uses useMemo/useCallback where appropriate
  * - Responsiveness: Mobile-first design with Material UI breakpoints and Tailwind
@@ -16,10 +16,7 @@ interface ComponentNameProps {
   onAction?: () => void;
 }
 
-export const ComponentName = memo<ComponentNameProps>(({ 
-  title,
-  onAction,
-}) => {
+export const ComponentName = memo<ComponentNameProps>(({ title, onAction }) => {
   // Memoized values
   const computedValue = useMemo(() => {
     // Expensive calculation here
@@ -31,12 +28,15 @@ export const ComponentName = memo<ComponentNameProps>(({
     onAction?.();
   }, [onAction]);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      handleClick();
-    }
-  }, [handleClick]);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleClick();
+      }
+    },
+    [handleClick]
+  );
 
   return (
     <Box
@@ -50,27 +50,27 @@ export const ComponentName = memo<ComponentNameProps>(({
       }}
       className="tailwind-responsive-classes"
     >
-      <Typography
-        variant="h2"
-        component="h2"
-        aria-label={`${title} heading`}
-      >
+      <Typography variant="h2" component="h2" aria-label={`${title} heading`}>
         {computedValue}
       </Typography>
-      
+
       {onAction && (
-        <button
+        <Box
+          component="button"
           onClick={handleClick}
           onKeyDown={handleKeyDown}
           aria-label={`${title} action button`}
           className="focus:outline-none focus:ring-2 focus:ring-blue-500"
+          sx={{
+            minWidth: { xs: 44, sm: 44 },
+            minHeight: { xs: 44, sm: 44 },
+          }}
         >
           Action
-        </button>
+        </Box>
       )}
     </Box>
   );
 });
 
 ComponentName.displayName = 'ComponentName';
-
