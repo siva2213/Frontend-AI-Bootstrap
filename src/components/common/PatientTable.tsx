@@ -13,7 +13,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import type { Patient, PatientStatus } from '@types/common/Patient';
+import type { Patient, PatientStatus } from '@/types/common/Patient';
 
 /**
  * PatientTable Component

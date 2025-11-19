@@ -17,7 +17,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useLocation } from 'react-router-dom';
-import type { SidebarLink } from '@types/navigation';
+import type { SidebarLink } from '@/types/navigation';
 
 /**
  * SidebarLayout Component
