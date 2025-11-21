@@ -18,6 +18,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "validate-structure": "node scripts/validate-file-structure.js",
+    "sync-rules": "node scripts/sync-rules.js",
     "pre-commit": "lint-staged",
     "pre-push": "npm run type-check && npm run test"
   },

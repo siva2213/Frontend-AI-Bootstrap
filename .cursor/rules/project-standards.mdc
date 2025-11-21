@@ -9,6 +9,7 @@ alwaysApply: true
 **⚠️ IMPORTANT: This rule aligns with `AI_INSTRUCTIONS.md` as the single source of truth.**
 
 This project follows strict development standards. **ALWAYS follow these rules when:**
+
 - Creating new components, features, or code
 - Modifying or enhancing existing code
 - Refactoring existing implementations
@@ -97,6 +98,7 @@ Component.displayName = 'Component';
 ### Essential Checklists
 
 **Performance Checklist:**
+
 - [ ] Components are memoized when appropriate
 - [ ] Expensive calculations use `useMemo`
 - [ ] Function props use `useCallback`
@@ -104,6 +106,7 @@ Component.displayName = 'Component';
 - [ ] Unnecessary re-renders are prevented
 
 **Responsive Checklist:**
+
 - [ ] Component tested on mobile (320px+)
 - [ ] Component tested on tablet (768px+)
 - [ ] Component tested on desktop (1024px+)
@@ -111,6 +114,7 @@ Component.displayName = 'Component';
 - [ ] Layout doesn't break at any breakpoint
 
 **Accessibility Checklist:**
+
 - [ ] No inline styles used
 - [ ] No inline event handlers
 - [ ] Semantic HTML elements used
@@ -121,17 +125,31 @@ Component.displayName = 'Component';
 
 ## Quick Reference
 
-- Component Standards: docs/rules/component-standards.md
-- Folder Structure: docs/rules/folder-structure.md
-- Testing: docs/rules/testing.md
-- Routing: docs/rules/routing.md
-- State Management: docs/rules/state-management.md
-- API Integration: docs/rules/api-integration.md
-- Full Rules: docs/README.md
+For detailed guidelines with examples and checklists, refer to the individual rule files in this directory:
+
+- **Component Standards**: See `.cursor/rules/component-standards.mdc`
+- **Folder Structure**: See `.cursor/rules/folder-structure.mdc`
+- **Testing**: See `.cursor/rules/testing.mdc`
+- **Routing**: See `.cursor/rules/routing.mdc`
+- **State Management**: See `.cursor/rules/state-management.mdc`
+- **API Integration**: See `.cursor/rules/api-integration.mdc`
+- **AI Tool Integration**: See `.cursor/rules/ai-tool-integration.mdc`
+
+## Detailed Rules
+
+The following individual rule files contain comprehensive guidelines:
+
+- **Component Standards**: `.cursor/rules/component-standards.mdc` (from `docs/rules/component-standards.md`)
+- **Folder Structure**: `.cursor/rules/folder-structure.mdc` (from `docs/rules/folder-structure.md`)
+- **Testing**: `.cursor/rules/testing.mdc` (from `docs/rules/testing.md`)
+- **Routing**: `.cursor/rules/routing.mdc` (from `docs/rules/routing.md`)
+- **State Management**: `.cursor/rules/state-management.mdc` (from `docs/rules/state-management.md`)
+- **API Integration**: `.cursor/rules/api-integration.mdc` (from `docs/rules/api-integration.md`)
+- **AI Tool Integration**: `.cursor/rules/ai-tool-integration.mdc` (from `docs/rules/ai-tool-integration.md`)
 
 ## When in Doubt
 
-Read the detailed rules in docs/rules/ directory.
+Read the detailed rules in `docs/rules/` directory or the corresponding `.cursor/rules/*.mdc` files for comprehensive guidelines, examples, and best practices.
 
 ## Single Source of Truth
 

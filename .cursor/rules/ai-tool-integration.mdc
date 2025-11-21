@@ -1,0 +1,374 @@
+---
+description: AI Tool Integration rules for React TypeScript development
+globs: '*.ts,*.tsx,*.js,*.jsx'
+alwaysApply: true
+---
+
+## Overview
+
+This document provides guidelines for using the rules framework with various AI coding assistants (Claude, GitHub Copilot, ChatGPT, Cursor, etc.) and IDEs (VS Code, Codium, Replit, etc.). These rules are designed to be IDE-agnostic and AI-tool agnostic.
+
+## Automatic Rule Discovery
+
+**🎯 Zero Manual Intervention Required!**
+
+This project includes configuration files that AI tools automatically read. Simply open the project in your IDE, and the AI tool will automatically apply these rules without any manual setup.
+
+### Auto-Discovery Files
+
+- **`.cursor/rules/`** - Cursor IDE automatically reads rules from this directory (latest format, auto-generated)
+- **`.github/copilot-instructions.md`** - GitHub Copilot automatically reads this file (auto-generated)
+- **`replit.md`** - Replit AI automatically reads this file (auto-generated)
+- **`AI_INSTRUCTIONS.md`** - Universal master file and single source of truth for all AI tools (edit this to update rules)
+- **`.vscode/settings.json`** - VS Code configuration for AI features
+
+### How It Works
+
+1. **Cursor**: Automatically loads rules from `.cursor/rules/` directory (latest format, auto-generated). Just start coding or asking questions - rules are already applied.
+
+2. **GitHub Copilot**: Automatically reads `.github/copilot-instructions.md`. All code suggestions will follow the rules.
+
+3. **VS Code with AI Extensions**: Can reference `AI_INSTRUCTIONS.md` or `.cursorrules` for context.
+
+4. **Claude Code / Other AI Tools**: Can read `.cursorrules` or `AI_INSTRUCTIONS.md` when you reference them or they're in the project context.
+
+### Usage Example
+
+With automatic rule discovery, you can simply say:
+
+```
+Create a Dashboard component that displays user statistics
+```
+
+The AI will automatically:
+
+- ✅ Apply React.memo, useMemo, useCallback
+- ✅ Use mobile-first responsive design
+- ✅ Include ARIA attributes and keyboard navigation
+- ✅ Place file in correct folder structure
+- ✅ Create TypeScript types
+- ✅ Generate test file
+- ✅ Follow all project standards
+
+**No manual rule copying needed!**
+
+## Core Principles
+
+- **IDE-Agnostic**: Rules work with any IDE or editor
+- **AI-Tool Agnostic**: Compatible with any AI coding assistant
+- **Automatic Discovery**: AI tools automatically read configuration files
+- **Zero Manual Setup**: No need to copy rules into prompts
+- **Self-Contained**: Each rule includes all necessary context
+- **Version-Controlled**: Rules are stored in markdown for easy sharing
+
+## How to Use Rules with AI Tools
+
+### Method 1: Include Rule File in Prompt
+
+Copy the entire rule document or relevant sections into your AI prompt:
+
+```
+Please create a Dashboard component following the rules in component-standards.md.
+
+[Paste component-standards.md content here]
+
+Specifically ensure:
+- Performance optimization with React.memo
+- Mobile-first responsive design
+- CSP and ADA compliance
+```
+
+### Method 2: Reference Rule Files
+
+Reference specific rule files in your prompt:
+
+```
+I need to create a new component. Please follow these rules:
+- docs/rules/component-standards.md
+- docs/rules/folder-structure.md
+
+Create a UserProfile component that:
+1. Follows the component standards (performance, responsiveness, accessibility)
+2. Is placed in the correct folder structure
+3. Includes proper TypeScript types
+```
+
+### Method 3: Use Rule Checklists
+
+Copy the checklist from rule documents:
+
+```
+Create a Button component. Use this checklist:
+
+Component Standards Checklist:
+- [ ] Components are memoized when appropriate
+- [ ] Expensive calculations use useMemo
+- [ ] Function props use useCallback
+- [ ] Component tested on mobile (320px+)
+- [ ] Component tested on tablet (768px+)
+- [ ] Component tested on desktop (1024px+)
+- [ ] No inline styles used
+- [ ] Semantic HTML elements used
+- [ ] ARIA attributes added where needed
+- [ ] All interactive elements keyboard accessible
+```
+
+## Prompt Templates
+
+### Component Creation Prompt
+
+```
+Create a [ComponentName] component following our project standards:
+
+Rules to follow:
+1. Component Standards (docs/rules/component-standards.md)
+   - Performance: Use React.memo, useMemo, useCallback where appropriate
+   - Responsiveness: Mobile-first with Material UI breakpoints and Tailwind
+   - Accessibility: ARIA attributes, keyboard navigation, semantic HTML
+
+2. Folder Structure (docs/rules/folder-structure.md)
+   - Place in src/components/[category]/
+   - Use PascalCase for component name
+   - Include index.ts for exports
+
+3. TypeScript
+   - Define proper prop types
+   - Use strict TypeScript
+
+Requirements:
+- [Specific requirements for this component]
+
+Please provide:
+1. Component file
+2. Type definitions
+3. Test file following testing.md rules
+```
+
+### Feature Implementation Prompt
+
+```
+Implement a [FeatureName] feature following our project standards:
+
+Rules to follow:
+1. Folder Structure (docs/rules/folder-structure.md)
+2. Component Standards (docs/rules/component-standards.md)
+3. Routing (docs/rules/routing.md) - if applicable
+4. State Management (docs/rules/state-management.md) - if applicable
+5. API Integration (docs/rules/api-integration.md) - if applicable
+6. Testing (docs/rules/testing.md)
+
+Feature requirements:
+- [List specific requirements]
+
+Please ensure all checklists from the relevant rule documents are followed.
+```
+
+### Code Review Prompt
+
+```
+Review this code against our project standards:
+
+[Paste code here]
+
+Check against:
+1. Component Standards (docs/rules/component-standards.md)
+2. Folder Structure (docs/rules/folder-structure.md)
+3. State Management (docs/rules/state-management.md)
+4. API Integration (docs/rules/api-integration.md)
+5. Testing (docs/rules/testing.md)
+
+Provide feedback on:
+- Compliance with standards
+- Missing requirements
+- Suggested improvements
+```
+
+## IDE-Specific Instructions
+
+### VS Code / Codium
+
+1. **Open Rule Files**: Keep rule files open in tabs for quick reference
+2. **Use Snippets**: Create code snippets based on templates
+3. **AI Extensions**: Use AI extensions (GitHub Copilot, Cursor, etc.) with rule references
+4. **Workspace Settings**: Configure path aliases matching the rules
+
+### Replit
+
+1. **Upload Rules**: Add rule files to your Replit project
+2. **Reference in Comments**: Add rule references in code comments
+3. **Use AI Features**: Reference rules when using Replit's AI features
+
+### Cursor
+
+1. **Rules Context**: Add rule files to Cursor's context
+2. **Custom Instructions**: Include rule summaries in custom instructions
+3. **Rule References**: Reference specific rules in chat prompts
+
+## AI Tool-Specific Tips
+
+### GitHub Copilot
+
+- Add rule references in comments above code
+- Use rule checklists in comments
+- Reference rule files in file headers
+
+```typescript
+/**
+ * Button Component
+ *
+ * Follows: docs/rules/component-standards.md
+ * - Performance: Memoized with React.memo
+ * - Responsiveness: Mobile-first design
+ * - Accessibility: ARIA labels, keyboard navigation
+ */
+```
+
+### Claude (Anthropic)
+
+- Include full rule documents in the conversation
+- Reference specific sections by header name
+- Use structured prompts with rule checklists
+
+### ChatGPT
+
+- Provide rule documents as context
+- Use clear, structured prompts
+- Reference specific rule sections
+
+## Quick Reference Integration
+
+### Using Quick Reference Cards
+
+Include quick reference cards in prompts for quick checks:
+
+```
+Create a component. Quick checklist:
+
+[Paste component-checklist.md content]
+```
+
+### Common Patterns
+
+Reference common patterns document:
+
+```
+I need to implement [pattern]. Please follow:
+- docs/quick-reference/common-patterns.md
+- [Relevant rule document]
+```
+
+## Best Practices
+
+### 1. Always Reference Rules
+
+When asking AI to create code, always reference the relevant rule documents.
+
+### 2. Include Checklists
+
+Copy checklists from rule documents into your prompts for verification.
+
+### 3. Use Templates
+
+Start with template files and ask AI to customize them.
+
+### 4. Verify Compliance
+
+After AI generates code, verify it against the rule checklists.
+
+### 5. Update Rules
+
+If you discover gaps in rules, update the rule documents and share with the team.
+
+## Example Workflow
+
+### Step 1: Identify Requirements
+
+```
+I need to create a UserDashboard component that:
+- Displays user profile information
+- Shows user activity statistics
+- Allows editing user details
+```
+
+### Step 2: Reference Rules
+
+```
+Following these rules:
+- docs/rules/component-standards.md
+- docs/rules/folder-structure.md
+- docs/rules/state-management.md
+- docs/rules/api-integration.md
+```
+
+### Step 3: Provide Context
+
+```
+Project setup:
+- React + TypeScript
+- Material UI for components
+- Tailwind CSS for styling
+- React Router for routing
+```
+
+### Step 4: Request Implementation
+
+```
+Please create the UserDashboard component following all the rules above.
+Include:
+1. Component file with proper structure
+2. Type definitions
+3. API service integration
+4. State management
+5. Test file
+```
+
+### Step 5: Verify
+
+```
+Please verify the generated code against the checklists in:
+- component-standards.md
+- state-management.md
+- api-integration.md
+- testing.md
+```
+
+## Sharing Rules with Team
+
+### Version Control
+
+- Store rules in Git repository
+- All team members have access
+- Rules are version-controlled and trackable
+
+### Documentation Site
+
+- Host rules on internal documentation site
+- Easy to reference and share
+- Searchable and organized
+
+### IDE Integration
+
+- Some IDEs allow custom documentation
+- Add rules to IDE help/documentation
+- Quick access from IDE
+
+## Troubleshooting
+
+### AI Not Following Rules
+
+1. **Be More Specific**: Include exact rule text, not just references
+2. **Use Checklists**: Copy checklists directly into prompts
+3. **Provide Examples**: Show examples from rule documents
+4. **Iterate**: Refine prompts based on AI responses
+
+### Rules Too Long
+
+1. **Extract Relevant Sections**: Only include relevant parts
+2. **Use Quick Reference**: Use quick reference cards instead
+3. **Reference by Section**: Reference specific sections by name
+
+## Related Rules
+
+- [Component Standards](./component-standards.md)
+- [Folder Structure](./folder-structure.md)
+- [All Rule Documents](./README.md)
