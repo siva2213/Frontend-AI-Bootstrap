@@ -3,7 +3,7 @@
 **⚠️ IMPORTANT: This file is auto-generated from `AI_INSTRUCTIONS.md` and `docs/rules/*.md`. Do not edit manually.**
 
 **Rules Version:** 1.0.0  
-**Last Updated:** 2025-11-21T10:37:13.653Z
+**Last Updated:** 2025-11-21T11:07:26.776Z
 
 This project follows strict development standards. **ALWAYS follow these rules when:**
 

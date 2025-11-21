@@ -19,6 +19,8 @@ const AI_INSTRUCTIONS_FILE = path.join(ROOT_DIR, 'AI_INSTRUCTIONS.md');
 const RULES_DIR = path.join(ROOT_DIR, 'docs', 'rules');
 const COPILOT_FILE = path.join(ROOT_DIR, '.github', 'copilot-instructions.md');
 const REPLIT_FILE = path.join(ROOT_DIR, 'replit.md');
+const CURSOR_DIR = path.join(ROOT_DIR, '.cursor');
+const CURSOR_INDEX_FILE = path.join(CURSOR_DIR, 'index.mdc');
 const CURSOR_RULES_DIR = path.join(ROOT_DIR, '.cursor', 'rules');
 
 // Rule file mappings: rule filename -> display name
@@ -224,6 +226,64 @@ For the complete and authoritative rules, always refer to **\`AI_INSTRUCTIONS.md
 }
 
 /**
+ * Generate Cursor index.mdc file (root rules file)
+ */
+function generateCursorIndexRules(coreStandards, rules, metadata) {
+  let content = `---
+description: Root project rules and standards for Cursor IDE
+globs: '*.ts,*.tsx,*.js,*.jsx'
+alwaysApply: true
+---
+
+# Project Rules for Cursor IDE
+
+**⚠️ IMPORTANT: This file is auto-generated from \`AI_INSTRUCTIONS.md\` and \`docs/rules/*.md\`. Do not edit manually.**
+
+**Rules Version:** ${metadata.version}  
+**Last Updated:** ${new Date().toISOString()}
+
+${coreStandards}
+
+## Detailed Rules
+
+For comprehensive guidelines, refer to the individual rule files in \`.cursor/rules/\`:
+
+`;
+
+  rules.forEach(rule => {
+    if (rule.content) {
+      content += `- **${rule.name}**: See \`.cursor/rules/${rule.key}.mdc\`\n`;
+    }
+  });
+
+  content += `
+## Quick Reference
+
+For detailed guidelines with examples and checklists:
+
+`;
+
+  rules.forEach(rule => {
+    if (rule.content) {
+      content += `- ${rule.name}: \`.cursor/rules/${rule.key}.mdc\` (from \`docs/rules/${rule.file}\`)\n`;
+    }
+  });
+
+  content += `- Full Rules: \`docs/rules/README.md\`
+
+## When in Doubt
+
+Read the detailed rules in \`docs/rules/\` directory or the corresponding \`.cursor/rules/*.mdc\` files for comprehensive guidelines, examples, and best practices.
+
+## Single Source of Truth
+
+For the complete and authoritative rules, always refer to **\`AI_INSTRUCTIONS.md\`** at the project root. This file ensures consistency across all AI tools and IDEs.
+`;
+
+  return content;
+}
+
+/**
  * Generate Cursor main rules file
  */
 function generateCursorMainRules(coreStandards, rules, metadata) {
@@ -327,6 +387,11 @@ function syncRules() {
   const replitContent = generateReplitInstructions(coreStandards, rules, metadata);
   writeFile(REPLIT_FILE, replitContent);
 
+  // Generate Cursor index.mdc (root rules file)
+  console.log('\n📝 Generating Cursor index.mdc...');
+  const cursorIndexContent = generateCursorIndexRules(coreStandards, rules, metadata);
+  writeFile(CURSOR_INDEX_FILE, cursorIndexContent);
+
   // Generate Cursor main rules file
   console.log('\n📝 Generating Cursor main rules file...');
   const cursorMainContent = generateCursorMainRules(coreStandards, rules, metadata);
@@ -346,6 +411,7 @@ function syncRules() {
   console.log(`   - Rule files processed: ${rules.length}`);
   console.log(`   - GitHub Copilot: ${COPILOT_FILE}`);
   console.log(`   - Replit: ${REPLIT_FILE}`);
+  console.log(`   - Cursor index: .cursor/index.mdc`);
   console.log(`   - Cursor main: .cursor/rules/project-standards.mdc`);
   console.log(`   - Cursor individual: ${rules.length} .mdc files\n`);
 }

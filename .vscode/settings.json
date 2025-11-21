@@ -1,10 +1,21 @@
 {
   "files.associations": {
     ".cursorrules": "markdown",
-    "AI_INSTRUCTIONS.md": "markdown"
+    "AI_INSTRUCTIONS.md": "markdown",
+    "*.mdc": "markdown"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.git": true
+  }
 }
 

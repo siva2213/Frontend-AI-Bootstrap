@@ -1,9 +1,15 @@
-# GitHub Copilot Instructions
+---
+description: Root project rules and standards for Cursor IDE
+globs: '*.ts,*.tsx,*.js,*.jsx'
+alwaysApply: true
+---
+
+# Project Rules for Cursor IDE
 
 **⚠️ IMPORTANT: This file is auto-generated from `AI_INSTRUCTIONS.md` and `docs/rules/*.md`. Do not edit manually.**
 
 **Rules Version:** 1.0.0  
-**Last Updated:** 2025-11-21T11:07:26.770Z
+**Last Updated:** 2025-11-21T11:07:26.779Z
 
 This project follows strict development standards. **ALWAYS follow these rules when:**
 
@@ -122,33 +128,32 @@ Component.displayName = 'Component';
 
 ## Detailed Rules
 
-For comprehensive guidelines, refer to the following rule files in `docs/rules/`:
+For comprehensive guidelines, refer to the individual rule files in `.cursor/rules/`:
 
-- **Component Standards**: [docs/rules/component-standards.md](docs/rules/component-standards.md)
-- **Folder Structure**: [docs/rules/folder-structure.md](docs/rules/folder-structure.md)
-- **Testing**: [docs/rules/testing.md](docs/rules/testing.md)
-- **Routing**: [docs/rules/routing.md](docs/rules/routing.md)
-- **State Management**: [docs/rules/state-management.md](docs/rules/state-management.md)
-- **API Integration**: [docs/rules/api-integration.md](docs/rules/api-integration.md)
-- **AI Tool Integration**: [docs/rules/ai-tool-integration.md](docs/rules/ai-tool-integration.md)
-- **Full Rules**: [docs/README.md](docs/rules/README.md)
+- **Component Standards**: See `.cursor/rules/component-standards.mdc`
+- **Folder Structure**: See `.cursor/rules/folder-structure.mdc`
+- **Testing**: See `.cursor/rules/testing.mdc`
+- **Routing**: See `.cursor/rules/routing.mdc`
+- **State Management**: See `.cursor/rules/state-management.mdc`
+- **API Integration**: See `.cursor/rules/api-integration.mdc`
+- **AI Tool Integration**: See `.cursor/rules/ai-tool-integration.mdc`
 
 ## Quick Reference
 
 For detailed guidelines with examples and checklists:
 
-- Component Standards: docs/rules/component-standards.md
-- Folder Structure: docs/rules/folder-structure.md
-- Testing: docs/rules/testing.md
-- Routing: docs/rules/routing.md
-- State Management: docs/rules/state-management.md
-- API Integration: docs/rules/api-integration.md
-- AI Tool Integration: docs/rules/ai-tool-integration.md
-- Full Rules: docs/README.md
+- Component Standards: `.cursor/rules/component-standards.mdc` (from `docs/rules/component-standards.md`)
+- Folder Structure: `.cursor/rules/folder-structure.mdc` (from `docs/rules/folder-structure.md`)
+- Testing: `.cursor/rules/testing.mdc` (from `docs/rules/testing.md`)
+- Routing: `.cursor/rules/routing.mdc` (from `docs/rules/routing.md`)
+- State Management: `.cursor/rules/state-management.mdc` (from `docs/rules/state-management.md`)
+- API Integration: `.cursor/rules/api-integration.mdc` (from `docs/rules/api-integration.md`)
+- AI Tool Integration: `.cursor/rules/ai-tool-integration.mdc` (from `docs/rules/ai-tool-integration.md`)
+- Full Rules: `docs/rules/README.md`
 
 ## When in Doubt
 
-Read the detailed rules in docs/rules/ directory for comprehensive guidelines, examples, and best practices.
+Read the detailed rules in `docs/rules/` directory or the corresponding `.cursor/rules/*.mdc` files for comprehensive guidelines, examples, and best practices.
 
 ## Single Source of Truth
 
