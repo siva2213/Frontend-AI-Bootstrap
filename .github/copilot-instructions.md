@@ -1,30 +1,23 @@
 # GitHub Copilot Instructions
 
-Follow these rules for ALL code suggestions:
+**⚠️ IMPORTANT: This file aligns with `AI_INSTRUCTIONS.md` as the single source of truth.**
 
-## Component Creation
-- Use React.memo, useMemo, useCallback for performance
-- Mobile-first responsive design (Material UI + Tailwind)
-- ARIA attributes, keyboard navigation, semantic HTML
-- No inline styles or inline event handlers
-- TypeScript strict mode with proper interfaces
+This project follows strict development standards. When generating or modifying code, ALWAYS follow these rules:
 
-## File Organization
-- Components: src/components/[category]/
-- Pages: src/pages/
-- Hooks: src/hooks/
-- Utils: src/utils/
-- Types: src/types/
-- Services: src/services/endpoints/
-- Store: src/store/contexts/
+## Quick Reference
 
-## Always Include
-- TypeScript types for all props
-- Tests for components
-- Error handling for API calls
-- Loading states
-- Accessibility features
+- Component Standards: docs/rules/component-standards.md
+- Folder Structure: docs/rules/folder-structure.md
+- Testing: docs/rules/testing.md
+- Routing: docs/rules/routing.md
+- State Management: docs/rules/state-management.md
+- API Integration: docs/rules/api-integration.md
+- Full Rules: docs/README.md
 
-## Reference
-See docs/rules/ for detailed standards.
+## When in Doubt
 
+Read the detailed rules in docs/rules/ directory.
+
+## Single Source of Truth
+
+For the complete and authoritative rules, always refer to **`AI_INSTRUCTIONS.md`** at the project root. This file ensures consistency across all AI tools and IDEs.
