@@ -17,6 +17,7 @@ This document defines the standards for state management in React applications. 
 ### When to Use Local State
 
 Use local state (`useState`, `useReducer`) when:
+
 - State is only needed within a single component
 - State doesn't need to be shared with siblings
 - State is component-specific UI state (e.g., form inputs, modals, toggles)
@@ -43,6 +44,7 @@ const FormComponent = () => {
 ### When to Use Global State
 
 Use global state (Context, Redux, Zustand, etc.) when:
+
 - State needs to be shared across multiple components
 - State needs to persist across route changes
 - State represents application-level data (user, theme, settings)
@@ -104,7 +106,7 @@ interface State {
 
 // Usage
 const getUser = (state: State, id: string) => state.users.byId[id];
-const getAllUsers = (state: State) => 
+const getAllUsers = (state: State) =>
   state.users.allIds.map(id => state.users.byId[id]);
 ```
 
@@ -157,7 +159,7 @@ const reducer = (state: State, action: Action): State => {
 
 const Counter = () => {
   const [state, dispatch] = useReducer(reducer, { count: 0, step: 1 });
-  
+
   return (
     <div>
       <button onClick={() => dispatch({ type: 'increment' })}>
@@ -192,10 +194,10 @@ const useAsyncData = <T>(fetchFn: () => Promise<T>) => {
 
   useEffect(() => {
     fetchFn()
-      .then((data) => {
+      .then(data => {
         setState({ data, loading: false, error: null });
       })
-      .catch((error) => {
+      .catch(error => {
         setState({ data: null, loading: false, error });
       });
   }, [fetchFn]);
@@ -230,17 +232,17 @@ const useOptimisticUpdate = () => {
 
   const updateItem = async (id: string, updates: Partial<Data>) => {
     // Optimistic update
-    setState(prev => prev.map(item => 
-      item.id === id ? { ...item, ...updates } : item
-    ));
+    setState(prev =>
+      prev.map(item => (item.id === id ? { ...item, ...updates } : item))
+    );
 
     try {
       await api.updateItem(id, updates);
     } catch (error) {
       // Rollback on error
-      setState(prev => prev.map(item => 
-        item.id === id ? { ...item, ...updates } : item
-      ));
+      setState(prev =>
+        prev.map(item => (item.id === id ? { ...item, ...updates } : item))
+      );
       throw error;
     }
   };
@@ -355,7 +357,7 @@ import { useMemo } from 'react';
 
 const UserList = ({ users, filter }) => {
   const filteredUsers = useMemo(() => {
-    return users.filter(user => 
+    return users.filter(user =>
       user.name.toLowerCase().includes(filter.toLowerCase())
     );
   }, [users, filter]);
@@ -395,7 +397,7 @@ const userSlice = createSlice({
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
-    clearUser: (state) => {
+    clearUser: state => {
       state.user = null;
     },
   },
@@ -417,9 +419,9 @@ interface UserStore {
   clearUser: () => void;
 }
 
-export const useUserStore = create<UserStore>((set) => ({
+export const useUserStore = create<UserStore>(set => ({
   user: null,
-  setUser: (user) => set({ user }),
+  setUser: user => set({ user }),
   clearUser: () => set({ user: null }),
 }));
 ```
@@ -444,4 +446,3 @@ When managing state, ensure:
 - [Component Standards](./component-standards.md)
 - [API Integration](./api-integration.md)
 - [Folder Structure](./folder-structure.md)
-

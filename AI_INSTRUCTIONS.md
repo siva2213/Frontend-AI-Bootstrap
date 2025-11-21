@@ -1,8 +1,134 @@
 # AI Development Instructions
 
-This project follows strict development standards. When generating or modifying code, ALWAYS follow these rules:
+<!-- VERSION: 1.0.0 -->
+<!-- LAST_UPDATED: 2024-01-15 -->
+<!-- CHANGELOG: docs/CHANGELOG.md -->
+
+<!-- SYNC_START -->
+
+This project follows strict development standards. **ALWAYS follow these rules when:**
+
+- Creating new components, features, or code
+- Modifying or enhancing existing code
+- Refactoring existing implementations
+- Fixing bugs or adding features to existing components
+- Updating or improving any part of the codebase
+
+These standards apply universally to all code changes, ensuring consistency and quality across the entire project.
+
+## Core Standards
+
+### Component Creation Requirements
+
+Every component must meet three core requirements:
+
+1. **Performance & Optimization**
+   - Use `React.memo` for expensive components or components rendered in lists
+   - Use `useMemo` for expensive calculations, derived state, filtering/sorting large arrays
+   - Use `useCallback` for function props passed to memoized children
+   - Implement code splitting with `React.lazy` for route-level components
+   - Optimize images and implement lazy loading
+
+2. **Responsiveness (Mobile-First)**
+   - Design mobile-first, then enhance for larger screens
+   - Use Material UI breakpoints: `xs`, `sm`, `md`, `lg`, `xl`
+   - Combine Material UI `sx` prop with Tailwind responsive classes
+   - Test on mobile (320px+), tablet (768px+), and desktop (1024px+)
+   - Ensure touch targets are at least 44x44px
+
+3. **CSP & ADA Compliance**
+   - ❌ **Never use inline styles** - Use Material UI `sx` prop or Tailwind classes
+   - ❌ **Never use inline event handlers** - Use function references
+   - ✅ Use semantic HTML elements (`nav`, `main`, `article`, `section`)
+   - ✅ Add ARIA attributes (`aria-label`, `aria-describedby`, `role`)
+   - ✅ Ensure keyboard navigation for all interactive elements
+   - ✅ Implement focus management for modals and dialogs
+   - ✅ Provide screen reader text and alt text for images
+   - ✅ Ensure color contrast meets WCAG AA standards (4.5:1 for text, 3:1 for large text)
+
+### File Organization
+
+- **Components**: `src/components/{common|forms|feedback}/` - Use PascalCase
+- **Pages**: `src/pages/` - Route-level components, PascalCase
+- **Layouts**: `src/layouts/` - Layout wrappers, PascalCase
+- **Hooks**: `src/hooks/{api|ui|utils}/` - Custom hooks, camelCase with `use` prefix
+- **Utils**: `src/utils/{validators|formatters|constants}/` - Utility functions, camelCase
+- **Types**: `src/types/{api|components|common}/` - TypeScript types, PascalCase
+- **Services**: `src/services/{api|endpoints}/` - API services, camelCase
+- **Store**: `src/store/{slices|contexts|selectors}/` - State management
+
+### Component Template
+
+```typescript
+import React, { memo, useMemo, useCallback } from 'react';
+import { Box } from '@mui/material';
+
+interface ComponentProps {
+  // Define props
+}
+
+export const Component = memo<ComponentProps>(({
+  // Destructure props
+}) => {
+  // Hooks
+  // Memoized values with useMemo
+  // Callbacks with useCallback
+  // Effects
+
+  return (
+    <Box
+      sx={{
+        // Responsive Material UI styles (mobile-first)
+        padding: { xs: 2, sm: 3, md: 4 },
+      }}
+      className="tailwind-classes"
+      role=""
+      aria-label=""
+    >
+      {/* Component content */}
+    </Box>
+  );
+});
+
+Component.displayName = 'Component';
+```
+
+### Essential Checklists
+
+**Performance Checklist:**
+
+- [ ] Components are memoized when appropriate
+- [ ] Expensive calculations use `useMemo`
+- [ ] Function props use `useCallback`
+- [ ] Large components are code-split
+- [ ] Unnecessary re-renders are prevented
+
+**Responsive Checklist:**
+
+- [ ] Component tested on mobile (320px+)
+- [ ] Component tested on tablet (768px+)
+- [ ] Component tested on desktop (1024px+)
+- [ ] Touch targets are at least 44x44px
+- [ ] Layout doesn't break at any breakpoint
+
+**Accessibility Checklist:**
+
+- [ ] No inline styles used
+- [ ] No inline event handlers
+- [ ] Semantic HTML elements used
+- [ ] ARIA attributes added where needed
+- [ ] All interactive elements keyboard accessible
+- [ ] Focus management implemented
+- [ ] Color contrast meets WCAG AA standards
+
+<!-- INCLUDE_RULES:START -->
+<!-- Rules from docs/rules/*.md will be inserted here by sync script -->
+<!-- INCLUDE_RULES:END -->
+<!-- SYNC_END -->
 
 ## Quick Reference
+
+For detailed guidelines with examples and checklists:
 
 - Component Standards: docs/rules/component-standards.md
 - Folder Structure: docs/rules/folder-structure.md
@@ -14,4 +140,4 @@ This project follows strict development standards. When generating or modifying 
 
 ## When in Doubt
 
-Read the detailed rules in docs/rules/ directory.
+Read the detailed rules in docs/rules/ directory for comprehensive guidelines, examples, and best practices.

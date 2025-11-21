@@ -128,7 +128,7 @@ export const AppRoutes = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
-          
+
           <Route
             path="/dashboard"
             element={
@@ -137,7 +137,7 @@ export const AppRoutes = () => {
               </AuthGuard>
             }
           />
-          
+
           <Route
             path="/admin"
             element={
@@ -148,7 +148,7 @@ export const AppRoutes = () => {
               </AuthGuard>
             }
           />
-          
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
@@ -231,7 +231,7 @@ import { useParams } from 'react-router-dom';
 
 const UserDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  
+
   // Use id safely
   return <div>User ID: {id}</div>;
 };
@@ -308,7 +308,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   const from = (location.state as any)?.from?.pathname || '/dashboard';
 
   const handleLogin = () => {
@@ -348,7 +348,7 @@ import { useLocation } from 'react-router-dom';
 
 export const useBreadcrumbs = () => {
   const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
+  const pathnames = location.pathname.split('/').filter(x => x);
 
   return pathnames.map((value, index) => {
     const to = `/${pathnames.slice(0, index + 1).join('/')}`;
@@ -451,4 +451,3 @@ When implementing routing, ensure:
 - [Component Standards](./component-standards.md)
 - [State Management](./state-management.md)
 - [Folder Structure](./folder-structure.md)
-

@@ -1,4 +1,4 @@
-# GitHub Copilot Instructions
+# Replit AI Instructions
 
 **⚠️ IMPORTANT: This file is auto-generated from `AI_INSTRUCTIONS.md` and `docs/rules/*.md`. Do not edit manually.**
 

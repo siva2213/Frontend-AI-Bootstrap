@@ -91,11 +91,11 @@ describe('Button', () => {
   it('calls onClick when clicked', async () => {
     const handleClick = jest.fn();
     const user = userEvent.setup();
-    
+
     render(<Button onClick={handleClick}>Click me</Button>);
-    
+
     await user.click(screen.getByRole('button'));
-    
+
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
@@ -137,15 +137,15 @@ describe('FormComponent', () => {
   it('submits form with user input', async () => {
     const onSubmit = jest.fn();
     const user = userEvent.setup();
-    
+
     render(<FormComponent onSubmit={onSubmit} />);
-    
+
     const emailInput = screen.getByLabelText(/email/i);
     const submitButton = screen.getByRole('button', { name: /submit/i });
-    
+
     await user.type(emailInput, 'test@example.com');
     await user.click(submitButton);
-    
+
     await waitFor(() => {
       expect(onSubmit).toHaveBeenCalledWith({
         email: 'test@example.com',
@@ -166,7 +166,7 @@ import { Modal } from './Modal';
 describe('Modal', () => {
   it('has proper ARIA attributes', () => {
     render(<Modal isOpen={true} title="Test Modal" />);
-    
+
     const modal = screen.getByRole('dialog');
     expect(modal).toHaveAttribute('aria-modal', 'true');
     expect(modal).toHaveAttribute('aria-labelledby');
@@ -175,7 +175,7 @@ describe('Modal', () => {
   it('traps focus within modal', async () => {
     const user = userEvent.setup();
     render(<Modal isOpen={true} />);
-    
+
     const closeButton = screen.getByRole('button', { name: /close/i });
     expect(closeButton).toHaveFocus();
   });
@@ -193,10 +193,10 @@ describe('Menu', () => {
   it('navigates with keyboard', async () => {
     const user = userEvent.setup();
     render(<Menu items={['Item 1', 'Item 2', 'Item 3']} />);
-    
+
     const firstItem = screen.getByRole('menuitem', { name: /item 1/i });
     firstItem.focus();
-    
+
     await user.keyboard('{ArrowDown}');
     expect(screen.getByRole('menuitem', { name: /item 2/i })).toHaveFocus();
   });
@@ -239,22 +239,22 @@ describe('useCounter', () => {
 
   it('increments count', () => {
     const { result } = renderHook(() => useCounter());
-    
+
     act(() => {
       result.current.increment();
     });
-    
+
     expect(result.current.count).toBe(1);
   });
 
   it('resets count', () => {
     const { result } = renderHook(() => useCounter());
-    
+
     act(() => {
       result.current.increment();
       result.current.reset();
     });
-    
+
     expect(result.current.count).toBe(0);
   });
 });
@@ -301,7 +301,7 @@ describe('UserComponent', () => {
 
   it('displays users from API', async () => {
     render(<UserComponent />);
-    
+
     expect(await screen.findByText('User 1')).toBeInTheDocument();
     expect(screen.getByText('User 2')).toBeInTheDocument();
   });
@@ -321,7 +321,7 @@ describe('API Service', () => {
     mockedAxios.get.mockResolvedValue({ data: mockData });
 
     const result = await userService.getUserById('1');
-    
+
     expect(result).toEqual(mockData);
     expect(mockedAxios.get).toHaveBeenCalledWith('/users/1');
   });
@@ -339,9 +339,7 @@ export const handlers = [
     return res(
       ctx.status(200),
       ctx.json({
-        data: [
-          { id: '1', name: 'User 1' },
-        ],
+        data: [{ id: '1', name: 'User 1' }],
       })
     );
   }),
@@ -413,13 +411,13 @@ import { DataComponent } from './DataComponent';
 describe('DataComponent', () => {
   it('loads and displays data', async () => {
     render(<DataComponent />);
-    
+
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
-    
+
     await waitFor(() => {
       expect(screen.getByText(/data loaded/i)).toBeInTheDocument();
     });
-    
+
     expect(screen.queryByText(/loading/i)).not.toBeInTheDocument();
   });
 });
@@ -430,6 +428,7 @@ describe('DataComponent', () => {
 ### When to Use Snapshots
 
 Use snapshots sparingly for:
+
 - Stable UI components
 - Configuration objects
 - Error messages
@@ -484,4 +483,3 @@ When writing tests, ensure:
 - [Component Standards](./component-standards.md)
 - [API Integration](./api-integration.md)
 - [Folder Structure](./folder-structure.md)
-

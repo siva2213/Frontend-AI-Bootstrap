@@ -36,7 +36,8 @@ src/
 // services/api/client.ts
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://api.example.com';
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL || 'https://api.example.com';
 
 class ApiClient {
   private client: AxiosInstance;
@@ -56,20 +57,20 @@ class ApiClient {
   private setupInterceptors() {
     // Request interceptor
     this.client.interceptors.request.use(
-      (config) => {
+      config => {
         const token = localStorage.getItem('authToken');
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
       },
-      (error) => Promise.reject(error)
+      error => Promise.reject(error)
     );
 
     // Response interceptor
     this.client.interceptors.response.use(
-      (response) => response,
-      async (error) => {
+      response => response,
+      async error => {
         if (error.response?.status === 401) {
           // Handle unauthorized
           localStorage.removeItem('authToken');
@@ -85,12 +86,24 @@ class ApiClient {
     return response.data;
   }
 
-  async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.post(url, data, config);
+  async post<T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
+    const response: AxiosResponse<T> = await this.client.post(
+      url,
+      data,
+      config
+    );
     return response.data;
   }
 
-  async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+  async put<T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     const response: AxiosResponse<T> = await this.client.put(url, data, config);
     return response.data;
   }
@@ -100,8 +113,16 @@ class ApiClient {
     return response.data;
   }
 
-  async patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.patch(url, data, config);
+  async patch<T>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
+    const response: AxiosResponse<T> = await this.client.patch(
+      url,
+      data,
+      config
+    );
     return response.data;
   }
 }
@@ -187,7 +208,9 @@ import { User, CreateUserRequest, UpdateUserRequest } from '@types/api/user';
 
 export const userService = {
   // Get all users with pagination
-  getUsers: async (params?: PaginationParams): Promise<PaginatedResponse<User>> => {
+  getUsers: async (
+    params?: PaginationParams
+  ): Promise<PaginatedResponse<User>> => {
     return apiClient.get<PaginatedResponse<User>>('/users', { params });
   },
 
@@ -225,22 +248,22 @@ import { ApiError } from '@services/api/types';
 export const handleApiError = (error: unknown): string => {
   if (error instanceof AxiosError) {
     const apiError = error.response?.data as ApiError;
-    
+
     if (apiError?.message) {
       return apiError.message;
     }
-    
+
     if (apiError?.errors) {
       return Object.values(apiError.errors).flat().join(', ');
     }
-    
+
     return error.message || 'An error occurred';
   }
-  
+
   if (error instanceof Error) {
     return error.message;
   }
-  
+
   return 'An unexpected error occurred';
 };
 ```
@@ -301,7 +324,7 @@ export const useApi = <T>() => {
 
   const execute = useCallback(async (apiCall: () => Promise<T>) => {
     setState({ data: null, loading: true, error: null });
-    
+
     try {
       const data = await apiCall();
       setState({ data, loading: false, error: null });
@@ -387,14 +410,14 @@ class Cache {
 
   get<T>(key: string): T | null {
     const entry = this.cache.get(key);
-    
+
     if (!entry) return null;
-    
+
     if (Date.now() - entry.timestamp > entry.ttl) {
       this.cache.delete(key);
       return null;
     }
-    
+
     return entry.data as T;
   }
 
@@ -417,14 +440,14 @@ export const cachedUserService = {
   getUsers: async (params?: PaginationParams) => {
     const cacheKey = `users-${JSON.stringify(params)}`;
     const cached = cache.get<PaginatedResponse<User>>(cacheKey);
-    
+
     if (cached) {
       return cached;
     }
-    
+
     const data = await userService.getUsers(params);
     cache.set(cacheKey, data, 5 * 60 * 1000); // 5 minutes
-    
+
     return data;
   },
 };
@@ -449,13 +472,15 @@ export const useCancellableApi = () => {
     };
   }, []);
 
-  const makeRequest = async <T>(apiCall: (signal: AbortSignal) => Promise<T>) => {
+  const makeRequest = async <T>(
+    apiCall: (signal: AbortSignal) => Promise<T>
+  ) => {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
 
     abortControllerRef.current = new AbortController();
-    
+
     return apiCall(abortControllerRef.current.signal);
   };
 
@@ -498,4 +523,3 @@ When integrating APIs, ensure:
 - [State Management](./state-management.md)
 - [Component Standards](./component-standards.md)
 - [Testing Rules](./testing.md)
-

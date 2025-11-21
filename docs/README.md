@@ -5,6 +5,7 @@ Welcome to the Frontend Rules Framework documentation. This framework provides c
 ## Overview
 
 This rules framework is designed to be:
+
 - **IDE-agnostic**: Works with any IDE (VS Code, Codium, Replit, Cursor, etc.)
 - **AI-tool agnostic**: Compatible with any AI coding assistant (Claude, Copilot, ChatGPT, etc.)
 - **Automatic Discovery**: AI tools automatically read configuration files - zero manual setup required
@@ -20,6 +21,7 @@ Simply open this project in your IDE (Cursor, VS Code, etc.), and AI tools will 
 ### Automatic Rule Discovery
 
 The project includes auto-discovery files that AI tools read automatically:
+
 - **`.cursorrules`** - Cursor IDE automatically loads this
 - **`.github/copilot-instructions.md`** - GitHub Copilot automatically reads this
 - **`AI_INSTRUCTIONS.md`** - Universal file for any AI tool
@@ -29,6 +31,7 @@ Just start coding or asking AI to create components - all rules are already appl
 ### Manual Reference (Optional)
 
 If you need to reference rules manually:
+
 1. **Read the Rules**: Start with the [Rule Format Standards](./rules/README.md) to understand how rules are structured
 2. **Review Component Standards**: Check [Component Standards](./rules/component-standards.md) for the three core requirements
 3. **Use Templates**: Reference templates in the `templates/` folder when creating new components
@@ -98,7 +101,7 @@ Ready-to-use templates in the `templates/` folder (optional reference):
 - `api-service.template.ts` - API service template
 - `component.test.template.tsx` - Test file template
 
-*Note: With automatic rule discovery, templates are optional - AI will generate code following the rules automatically.*
+_Note: With automatic rule discovery, templates are optional - AI will generate code following the rules automatically._
 
 ## Configuration Files
 
@@ -117,18 +120,21 @@ Project configuration files enforcing standards:
 Every component must meet three core requirements:
 
 ### 1. Performance & Optimization
+
 - Use `React.memo` for expensive components
 - Use `useMemo` for expensive calculations
 - Use `useCallback` for function props
 - Implement code splitting and lazy loading
 
 ### 2. Responsiveness
+
 - Mobile-first approach
 - Material UI breakpoints
 - Tailwind responsive classes
 - Test on multiple screen sizes
 
 ### 3. CSP & ADA Compliance
+
 - No inline styles
 - Semantic HTML
 - ARIA attributes
@@ -141,6 +147,7 @@ Every component must meet three core requirements:
 ### Automatic (Recommended)
 
 **Zero manual intervention required!** Simply open the project in your IDE and start coding. AI tools automatically read:
+
 - `.cursorrules` (Cursor)
 - `.github/copilot-instructions.md` (GitHub Copilot)
 - `AI_INSTRUCTIONS.md` (Other AI tools)
@@ -150,6 +157,7 @@ Just ask AI to create components - all rules are automatically applied!
 ### Manual Reference (Optional)
 
 If you need to manually reference rules:
+
 1. **Reference Rule Files**: Include rule file paths in your prompts
 2. **Copy Checklists**: Paste checklists into prompts for verification
 3. **Use Templates**: Start with templates and customize
@@ -196,6 +204,7 @@ When updating or adding rules:
 ## Support
 
 For questions or clarifications about the rules:
+
 1. Review the relevant rule document
 2. Check quick reference cards
 3. Review examples in templates
@@ -204,4 +213,3 @@ For questions or clarifications about the rules:
 ---
 
 **Last Updated**: [Date will be added when rules are finalized]
-

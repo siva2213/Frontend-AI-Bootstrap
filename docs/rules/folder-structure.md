@@ -96,6 +96,7 @@ components/
 ### Index Files
 
 Use `index.ts` or `index.tsx` files for:
+
 - Re-exporting components from a folder
 - Simplifying imports
 - Example: `components/common/index.ts` exports all common components
@@ -173,6 +174,7 @@ pages/
 Two approaches are acceptable:
 
 1. **Co-located**: Test file next to source file
+
    ```
    components/
    ├── Button.tsx
@@ -204,4 +206,3 @@ When creating or organizing files, ensure:
 
 - [Component Standards](./component-standards.md)
 - [Testing Rules](./testing.md)
-

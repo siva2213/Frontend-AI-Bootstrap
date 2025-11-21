@@ -12,14 +12,15 @@ This project includes configuration files that AI tools automatically read. Simp
 
 ### Auto-Discovery Files
 
-- **`.cursorrules`** - Cursor IDE automatically reads this file when you open the project
-- **`.github/copilot-instructions.md`** - GitHub Copilot automatically reads this file
-- **`AI_INSTRUCTIONS.md`** - Universal master file that can be referenced by any AI tool
+- **`.cursor/rules/`** - Cursor IDE automatically reads rules from this directory (latest format, auto-generated)
+- **`.github/copilot-instructions.md`** - GitHub Copilot automatically reads this file (auto-generated)
+- **`replit.md`** - Replit AI automatically reads this file (auto-generated)
+- **`AI_INSTRUCTIONS.md`** - Universal master file and single source of truth for all AI tools (edit this to update rules)
 - **`.vscode/settings.json`** - VS Code configuration for AI features
 
 ### How It Works
 
-1. **Cursor**: Automatically loads `.cursorrules` when you open the project. Just start coding or asking questions - rules are already applied.
+1. **Cursor**: Automatically loads rules from `.cursor/rules/` directory (latest format, auto-generated). Just start coding or asking questions - rules are already applied.
 
 2. **GitHub Copilot**: Automatically reads `.github/copilot-instructions.md`. All code suggestions will follow the rules.
 
@@ -36,6 +37,7 @@ Create a Dashboard component that displays user statistics
 ```
 
 The AI will automatically:
+
 - ✅ Apply React.memo, useMemo, useCallback
 - ✅ Use mobile-first responsive design
 - ✅ Include ARIA attributes and keyboard navigation
@@ -209,7 +211,7 @@ Provide feedback on:
 ```typescript
 /**
  * Button Component
- * 
+ *
  * Follows: docs/rules/component-standards.md
  * - Performance: Memoized with React.memo
  * - Responsiveness: Mobile-first design
@@ -366,4 +368,3 @@ Please verify the generated code against the checklists in:
 - [Component Standards](./component-standards.md)
 - [Folder Structure](./folder-structure.md)
 - [All Rule Documents](./README.md)
-

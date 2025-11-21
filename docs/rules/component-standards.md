@@ -15,6 +15,7 @@ This document defines the standards for creating React components in this projec
 ### React.memo Usage
 
 Use `React.memo` for components that:
+
 - Receive props that don't change frequently
 - Are expensive to render
 - Are rendered multiple times in lists
@@ -39,6 +40,7 @@ export const Button = React.memo<ButtonProps>(({ label, onClick }) => {
 ### useMemo for Expensive Calculations
 
 Use `useMemo` for:
+
 - Complex calculations
 - Derived state computations
 - Filtering/sorting large arrays
@@ -199,11 +201,13 @@ const GridComponent = () => {
 #### Avoid Inline Styles
 
 ❌ **Don't:**
+
 ```typescript
 <div style={{ color: 'red' }}>Content</div>
 ```
 
 ✅ **Do:**
+
 ```typescript
 import { Box } from '@mui/material';
 
@@ -215,11 +219,13 @@ import { Box } from '@mui/material';
 #### Avoid Inline Event Handlers
 
 ❌ **Don't:**
+
 ```typescript
 <div onClick="handleClick()">Content</div>
 ```
 
 ✅ **Do:**
+
 ```typescript
 <div onClick={handleClick}>Content</div>
 ```
@@ -337,6 +343,7 @@ import { IconButton, Tooltip } from '@mui/material';
 #### Color Contrast
 
 Ensure sufficient color contrast (WCAG AA minimum):
+
 - Text: 4.5:1 for normal text, 3:1 for large text
 - Use Material UI theme colors (they meet contrast requirements)
 - Test with tools like WebAIM Contrast Checker
@@ -385,7 +392,7 @@ interface ComponentProps {
   // Define props
 }
 
-export const Component = memo<ComponentProps>(({ 
+export const Component = memo<ComponentProps>(({
   // Destructure props
 }) => {
   // Hooks
@@ -417,4 +424,3 @@ Component.displayName = 'Component';
 - [Folder Structure](./folder-structure.md)
 - [Testing Rules](./testing.md)
 - [AI Tool Integration](./ai-tool-integration.md)
-
